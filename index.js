@@ -30,8 +30,12 @@ app.get('/', (req, res) => {
 
 // Sample endpoint 2: Simulasi error
 app.get('/error', (req, res) => {
-  logger.error('Simulasi error terjadi', { traceId: req.traceId, route: '/error' });
-  res.status(500).send('Something went wrong!');
+  try {
+    throw new Error('Simulated error!');
+  } catch (err) {
+    logger.error('An error occurred', { traceId: req.traceId, error: err.stack });
+    res.status(500).send('Something broke!');
+  }
 });
 
 // Sample endpoint 3: Log dengan metadata

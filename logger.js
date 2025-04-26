@@ -26,6 +26,7 @@ const customFormat = printf(({ timestamp, level, message, metadata }) => {
   return logMessage;
 });
 
+
 // Logger setup
 const logger = winston.createLogger({
   level: 'info', // default level

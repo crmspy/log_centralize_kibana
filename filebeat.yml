@@ -23,6 +23,8 @@ processors:
           to: "userId"
         - from: "metadata.errorCode"
           to: "errorCode"
+        - from: "metadata.error"
+          to: "errorMessage"
       ignore_missing: true
       fail_on_error: false
 
