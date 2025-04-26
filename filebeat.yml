@@ -1,0 +1,33 @@
+filebeat.inputs:
+  - type: filestream
+    id: my-nodejs-app-logs
+    paths:
+      - /usr/share/filebeat/logs/*.log
+    json.keys_under_root: true        # Ini artinya semua key JSON kamu jadi field
+    json.add_error_key: true
+    fields:
+      app: "my-nodejs-app"
+      environment: "development"
+    fields_under_root: true            # Ini biar `fields.app` & `fields.environment` ikut di root
+    parsers:
+      - ndjson:
+          overwrite_keys: true
+          add_error_key: true
+
+processors:
+  - rename:
+      fields:
+        - from: "metadata.traceId"
+          to: "traceId"
+        - from: "metadata.userId"
+          to: "userId"
+        - from: "metadata.errorCode"
+          to: "errorCode"
+      ignore_missing: true
+      fail_on_error: false
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "changeme"
+  ssl.verification_mode: "none"
