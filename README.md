@@ -16,6 +16,16 @@
 
 ---
 
+## Log Centralization with Filebeat, Kibana, and Node.js using Winston
+
+This project demonstrates how to set up centralized logging for a Node.js application using **Winston** for logging, **Filebeat** for shipping logs, and **Kibana** for visualizing logs. The logs are generated in JSON format and are shipped to **Elasticsearch** through **Filebeat**, where they can be analyzed and visualized in **Kibana**.
+
+### Features:
+- Centralized logging with Filebeat and Winston
+- Real-time log monitoring and visualization with Kibana
+- Easy setup with Docker and Docker Compose
+- Support for detailed logs with metadata like `traceId`, `userId`, and `errorCode`
+
 ## Overview
 
 This project provides a sample setup for centralized logging using:
